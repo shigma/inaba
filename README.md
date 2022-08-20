@@ -12,7 +12,13 @@ A collection of random utilities.
 ```ts
 import Random from 'inaba'
 
-Random.int(0, 10)               // 5
+Random.bool(0.8)                // gets a random boolean
+Random.shuffle([5, 1, 4])       // randomly shuffles an array
+
+// use custom random function
+const random = new Random(() => Math.random())
+Random.int(0, 10)               // gets a random integer
+random.pick([1, 2, 3])          // picks a random element from an array
 ```
 
 ## API
@@ -40,31 +46,24 @@ Generates a random real number between `lower` (inclusive) and `upper` (exclusiv
 
 Generates a random integer between `lower` (inclusive) and `upper` (exclusive).
 
+### Random.pick(array, count?)
+
+- **array:** `readonly T[]`
+- **count:** `number`
+- returns: `T | T[]`
+
+If `count` is not provided, returns a random element from `array`; otherwise returns an array of `count` random elements from `array`.
+
 ### Random.shuffle(array)
 
 - **array:** `T[]`
 - returns: `T[]`
 
-Randomly shuffles an array.
-
-### Random.pick(array)
-
-- **array:** `readonly T[]`
-- returns: `T`
-
-Randomly picks an element from an array.
-
-### Random.multiPick(array, count)
-
-- **array:** `readonly T[]`
-- **count:** `number`
-- returns: `T[]`
-
-Randomly picks `count` elements from an array.
+Randomly shuffles an array. It is equivalent to `.pick(array, array.length)`.
 
 ### Random.weightedPick(weights)
 
 - **weights:** `Record<T, number>`
 - returns: `T`
 
-Randomly picks an element from a dict with weights.
+Randomly picks a key from a dict, using corresponding value as weight.
