@@ -25,8 +25,8 @@ random.pick([1, 2, 3])          // picks a random element from an array
 
 ### new Random(callback)
 
-- **callback:** a random function returning [0, 1)
-- **returns:**
+- **callback:** `() => number` a random function returning [0, 1)
+- **returns:** `Random`
 
 Creates a random generator with custom random function.
 
